@@ -1,6 +1,6 @@
 package com.sinaukoding.tokosinau.controller;
 
-import com.sinaukoding.tokosinau.entity.Product;
+import com.sinaukoding.tokosinau.entity.dto.ProductDTO;
 import com.sinaukoding.tokosinau.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,14 +19,14 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> saveData(@RequestBody Product param){
+    public ResponseEntity<?> saveData(@RequestBody ProductDTO param){
         return new ResponseEntity<>(service.save(param), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateData(@PathVariable Long id,
-                                        @RequestBody Product param){
-        Product data = service.update(param, id);
+                                        @RequestBody ProductDTO param){
+        ProductDTO data = service.update(param, id);
 
         if (data != null) {
             return new ResponseEntity<>(data, HttpStatus.OK);

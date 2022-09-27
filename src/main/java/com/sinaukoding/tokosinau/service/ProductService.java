@@ -1,17 +1,17 @@
 package com.sinaukoding.tokosinau.service;
 
-import com.sinaukoding.tokosinau.entity.Product;
+import com.sinaukoding.tokosinau.entity.dto.ProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
-    Product save(Product param);
+    ProductDTO save(ProductDTO param);
 
-    List<Product> findAllData();
+    List<ProductDTO> findAllData();
 
-    Product update(Product param, Long id);
+    ProductDTO update(ProductDTO param, Long id);
 
     Boolean delete(Long id);
 
-    Product findById(Long id);
+    ProductDTO findById(Long id);
 }
