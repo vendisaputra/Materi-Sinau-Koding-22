@@ -10,6 +10,7 @@ import com.sinaukoding.tokosinau.repository.SupplierRepository;
 import com.sinaukoding.tokosinau.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private SupplierRepository supplierRepository;
 
+    @Transactional
     @Override
     public ProductDTO save(ProductDTO param) {
         Supplier supplier = SupplierMapping.instance.toEntity(param.getSupplier());
@@ -38,11 +40,13 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapping.instance.toDto(data);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<ProductDTO> findAllData() {
         return ProductMapping.instance.toListDto(repository.findAll());
     }
 
+    @Transactional
     @Override
     public ProductDTO update(ProductDTO param, Long id) {
         Product data = repository.findById(id).orElse(null);

@@ -9,28 +9,27 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "products")
+@Table(name = "pembeli")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Product {
+public class Pembeli {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String name;
+    private String namaPembeli;
 
     @Column
-    private Double price;
+    private String jk;
 
     @Column
-    private Integer stock;
+    private String noTelp;
 
-    @ManyToOne
-    @JoinColumn(name = "id_supplier")
-    private Supplier supplier;
+    @Column
+    private String alamat;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "pembeli")
     private List<Transaksi> transaksiList;
 }

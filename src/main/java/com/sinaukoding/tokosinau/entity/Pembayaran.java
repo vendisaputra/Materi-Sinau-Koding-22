@@ -6,31 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Date;
 
 @Entity
-@Table(name = "products")
+@Table(name = "pembayaran")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Product {
+public class Pembayaran {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String name;
+    private Date tglBayar;
 
     @Column
-    private Double price;
-
-    @Column
-    private Integer stock;
+    private Double totalBayar;
 
     @ManyToOne
-    @JoinColumn(name = "id_supplier")
-    private Supplier supplier;
-
-    @OneToMany(mappedBy = "product")
-    private List<Transaksi> transaksiList;
+    @JoinColumn(name = "id_transaksi")
+    private Transaksi transaksi;
 }
