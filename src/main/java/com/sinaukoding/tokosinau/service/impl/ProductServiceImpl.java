@@ -29,10 +29,8 @@ public class ProductServiceImpl implements ProductService {
 
         Product data = ProductMapping.instance.toEntity(param);
 
-        if (param.getSupplier() != null) {
-            supplier = supplierRepository.save(supplier);
-
-            data.getSupplier().setId(supplier.getId());
+        if (param.getSupplier().getId() == null) {
+            return null;
         }
 
         data = repository.save(data);
